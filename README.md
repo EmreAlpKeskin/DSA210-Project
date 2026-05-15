@@ -147,7 +147,27 @@ At the same time, the model may also be influenced by the imbalance in the datas
 
 ---
 
-### 4.3 Feature Importance
+### 4.3 Cross-Validation and Hyperparameter Tuning
+
+To improve model reliability, cross-validation and hyperparameter tuning were applied to the Decision Tree model.
+
+**Methods Used:**
+- 5-fold cross-validation
+- GridSearchCV for tuning maximum tree depth
+
+**Results:**
+- Average cross-validation score: approximately **0.79**
+- Best parameter found: **max_depth = 4**
+
+**Interpretation:**
+
+Cross-validation helps evaluate whether the model performs consistently across different subsets of the dataset. The results suggest that the Decision Tree model remains relatively stable and generalizes reasonably well.
+
+Hyperparameter tuning was used to test multiple tree depths and identify the most suitable model complexity. The results indicate that a moderate tree depth provides the best balance between learning useful patterns and avoiding overfitting.
+
+---
+
+### 4.4 Feature Importance
 
 ![Feature Importance](Decision_Tree_Importance_of_Feature.png)
 

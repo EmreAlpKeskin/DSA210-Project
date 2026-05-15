@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import mean_squared_error, r2_score, accuracy_score
+from sklearn.model_selection import cross_val_score, GridSearchCV
 
 
 
@@ -74,12 +75,40 @@ print("\nDECISION TREE")
 print("Accuracy:", accuracy_score(y_test, y_pred))
 
 
+# CROSS VALIDATION
+
+cv_scores = cross_val_score(tree, X, y, cv=5)
+
+print("\nCROSS VALIDATION")
+print("Scores:", cv_scores)
+print("Average Score:", cv_scores.mean())
+
+
+# HYPERPARAMETER TUNING
+
+param_grid = {
+    'max_depth': [2, 4, 6, 8, 10]
+}
+
+grid_search = GridSearchCV(
+    DecisionTreeClassifier(),
+    param_grid,
+    cv=5
+)
+
+grid_search.fit(X_train, y_train)
+
+print("\nHYPERPARAMETER TUNING")
+print("Best Parameters:", grid_search.best_params_)
+print("Best CV Score:", grid_search.best_score_)
+
+
 
 #FEATURE IMPORTANCE
 
 importance = pd.DataFrame({
     'Feature': X.columns,
-    'Importance': tree.feature_importances_
+    'Importance': grid_search.best_estimator_.feature_importances_
 })
 
 print("\nFEATURE IMPORTANCE")
