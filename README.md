@@ -49,11 +49,15 @@ In this project, a movie is defined as **successful if its revenue exceeds its b
 **Findings:**
 - Strong positive relationship observed
 - Correlation ≈ **0.70**
-- Higher budget generally leads to higher revenue
+- Movies with larger budgets generally tend to generate more revenue
 
 **Interpretation:**
-- Budget is an important factor
-- However, large variance shows budget alone is not enough
+
+This graph shows that movies with higher budgets usually earn more money at the box office. In many cases, expensive movies have larger productions, stronger marketing, better visual effects, and wider releases, which may help them reach larger audiences.
+
+However, the graph also shows that budget alone does not fully determine success. Some high-budget movies still earn relatively low revenue, while some lower-budget movies perform surprisingly well. This suggests that movie success depends on many different factors such as audience interest, marketing, timing, reviews, and popularity.
+
+The wide spread of the points in the graph is important because it shows that financial investment alone is not enough to guarantee success.
 
 ---
 
@@ -65,11 +69,15 @@ In this project, a movie is defined as **successful if its revenue exceeds its b
 - budget vs revenue → **0.71**
 - revenue vs vote_count → **0.76**
 - popularity vs vote_count → **0.69**
-- vote_average has weak correlations
+- vote_average has relatively weaker relationships
 
 **Interpretation:**
-- Revenue is strongly linked with audience engagement
-- vote_count is highly influential
+
+The correlation matrix helps show which variables tend to move together. The strongest relationship in the matrix is between revenue and vote_count. This may indicate that movies receiving more audience attention and interaction also tend to generate more revenue.
+
+Budget also has a strong relationship with revenue, but not as strong as vote_count. This suggests that audience engagement may be even more important than production cost when discussing movie success.
+
+At the same time, correlation values only show relationships between variables. They do not prove that one variable directly causes another.
 
 ---
 
@@ -79,12 +87,26 @@ In this project, a movie is defined as **successful if its revenue exceeds its b
 
 **Findings:**
 - Highly right-skewed distribution
-- Most movies generate low revenue
-- Few movies generate extremely high revenue (outliers)
+- Most movies generate relatively low revenue
+- A small number of movies generate extremely high revenue
 
 **Interpretation:**
-- Movie revenue is not normally distributed
-- Extreme successes dominate the market
+
+This graph shows that movie revenue is distributed very unevenly. Most movies earn relatively small amounts of revenue, while only a small number of movies become extremely successful and generate very large profits.
+
+This creates a right-skewed distribution, meaning that a few very successful movies pull the distribution toward higher values. This is important because many statistical methods work better when data is more balanced or normally distributed.
+
+Because of this skewness, the results of the analysis should be interpreted carefully. Extremely successful movies may influence averages and correlations more strongly than typical movies.
+
+---
+
+### 3.4 Genre Analysis
+
+I also briefly looked at movie genres to see if different genres showed different success patterns.
+
+Genres such as Action, Drama, and Comedy appeared more frequently in the dataset compared to others. I also noticed that some genres seemed to have higher success rates than others.
+
+However, genre analysis was not the main focus of this project, since the analysis mainly concentrated on numerical variables like budget, revenue, popularity, and vote-related features. A more detailed genre-based analysis could be done in future work.
 
 ---
 
@@ -94,28 +116,34 @@ In this project, a movie is defined as **successful if its revenue exceeds its b
 
 ### 4.1 Linear Regression
 
-Used to predict revenue.
+Used to predict movie revenue using numerical variables.
 
 **Results:**
 - R² score: **0.657**
 - RMSE: **~131 million**
 
 **Interpretation:**
-- Model explains ~65% of variance
-- Indicates moderate predictive power
+
+The regression model explains around 65% of the variation in movie revenue. This means the selected variables provide useful information about financial performance, but they still cannot fully explain why movies succeed or fail.
+
+A large amount of variation remains unexplained, which suggests that other important factors are missing from the dataset. For example, marketing campaigns, release timing, competition with other movies, social media trends, or critic reviews may also strongly influence revenue.
+
+Overall, the model performs reasonably well, but movie success appears to be a more complex problem than can be explained by a few numerical variables alone.
 
 ---
 
 ### 4.2 Decision Tree Classification
 
-Used to classify success (1) vs failure (0)
+Used to classify movies as successful or unsuccessful.
 
 **Results:**
 - Accuracy: **~79.8%**
 
 **Interpretation:**
-- Model performs well for classification
-- Combining variables improves prediction
+
+The decision tree model achieved relatively strong classification performance. This suggests that combining multiple variables gives more useful information than relying on only one feature.
+
+At the same time, the model may also be influenced by the imbalance in the dataset, since successful movies are much more common than unsuccessful ones. Because of this, accuracy alone may not fully represent model performance.
 
 ---
 
@@ -130,8 +158,10 @@ Used to classify success (1) vs failure (0)
 - popularity → **~0.009**
 
 **Interpretation:**
-- vote_count dominates prediction
-- Audience engagement > budget
+
+The feature importance results show that vote_count is by far the strongest variable associated with movie success. This may suggest that audience attention and interaction are closely related to financial performance.
+
+Budget is still an important factor, but its contribution appears much smaller compared to audience-related features. This finding supports the idea that audience engagement may play a larger role than production cost alone.
 
 ---
 
@@ -148,11 +178,19 @@ Used to classify success (1) vs failure (0)
 
 ### 5.1 Statistical Evidence
 
-- Correlation ≈ **0.70**
-- Strong positive relationship observed
+- Pearson correlation ≈ **0.70**
+- Strong positive linear association observed
 
 **Decision:**
-- H0 is rejected
+The null hypothesis (H0) is rejected.
+
+**Interpretation:**
+
+The hypothesis test suggests that movies with larger budgets generally tend to generate higher revenue. In other words, there is a strong positive relationship between budget and revenue in the dataset.
+
+However, this does not mean that increasing a movie’s budget will automatically make it successful. The analysis only shows that these variables are associated with each other.
+
+In addition, the revenue distribution is highly skewed, meaning that a small number of extremely successful movies may influence the statistical results more strongly than average movies. Because of this, the findings should be interpreted carefully rather than as direct cause-and-effect conclusions.
 
 ---
 
@@ -166,8 +204,10 @@ Used to classify success (1) vs failure (0)
 - Overlap exists
 
 **Interpretation:**
-- Budget contributes to success
-- But is not the only determining factor
+
+The boxplot shows that successful movies generally tend to have larger budgets compared to unsuccessful movies. However, there is still a noticeable overlap between the two groups.
+
+This overlap is important because it suggests that budget alone cannot perfectly separate successful and unsuccessful movies. Some lower-budget movies still become successful, while some expensive movies fail financially.
 
 ---
 
@@ -180,16 +220,22 @@ Used to classify success (1) vs failure (0)
 - Unsuccessful: **791 (~24.5%)**
 
 **Interpretation:**
-- Dataset is imbalanced
-- Majority of movies are profitable
+
+The dataset contains a much larger number of successful movies compared to unsuccessful ones. This imbalance is important because machine learning models may become biased toward the majority class.
+
+As a result, model accuracy should be interpreted carefully, since predicting the majority class becomes easier in imbalanced datasets.
 
 ---
 
 ## 6. Results & Discussion
 
-- Budget positively affects revenue
-- vote_count is the strongest predictor
-- Revenue depends on multiple factors
+- The overall analysis suggests that movie success is influenced by multiple factors rather than a single variable.
+
+- Budget is strongly associated with revenue, and movies with larger budgets generally tend to earn more money. However, the analysis also shows that budget alone cannot fully explain success. Many high-budget movies still perform poorly, while some lower-budget movies perform much better than expected.
+
+- One of the most important findings in this project is the role of audience engagement. Variables such as vote_count showed stronger relationships with revenue than some other features. This may suggest that audience attention and interaction are closely connected to financial success.
+
+- The machine learning models also support these findings. Both the regression and classification models achieved reasonable performance, but neither model could perfectly explain or predict movie success. This further suggests that movie performance depends on many complex and unpredictable factors.
 
 **Key Insight:**
 Audience engagement is more important than budget alone.
@@ -200,7 +246,7 @@ Audience engagement is more important than budget alone.
 
 This project analyzed the key factors influencing movie success using both statistical methods and machine learning techniques.
 
-The results consistently indicate that **budget has a statistically significant positive effect on revenue**, supported by correlation (~0.70) and visual analysis. However, budget alone does not fully explain success due to high variability.
+The results consistently indicate that budget has a strong positive relationship with revenue, supported by correlation (~0.70) and visual analysis. However, budget alone does not fully explain success due to high variability.
 
 The linear regression model (R² ≈ 0.65) shows moderate predictive power, indicating that additional variables influence outcomes. The decision tree model (accuracy ≈ 79.8%) confirms that combining features improves classification performance.
 
@@ -219,3 +265,5 @@ Overall:
 - Dataset size (~3000 movies)
 - Missing variables (marketing, timing)
 - Simplified success definition (revenue > budget)
+- The results in this project show relationships between variables, but they should not be interpreted as direct cause-and-effect conclusions.
+- In future work, more factors such as genre, runtime, release timing, and production companies could be included to better understand what makes a movie successful.
