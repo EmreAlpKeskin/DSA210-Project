@@ -287,3 +287,9 @@ Overall:
 - Simplified success definition (revenue > budget)
 - The results in this project show relationships between variables, but they should not be interpreted as direct cause-and-effect conclusions.
 - In future work, more factors such as genre, runtime, release timing, and production companies could be included to better understand what makes a movie successful.
+
+---
+
+## 9. AI Assistance
+
+AI assistance tools were used during some parts of the project for debugging code, improving and correcting writing, organizing the notebook structure, and getting suggestions about possible model choices and analysis improvements.
